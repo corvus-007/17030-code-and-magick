@@ -9,6 +9,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = '#fff';
   ctx.fillRect(100, 10, 420, 270);
   ctx.shadowColor = 'rgba(0, 0, 0, 0)';
+
   ctx.fillStyle = '#000';
   ctx.textBaseline = 'hanging';
   ctx.font = '16px PT Mono';
@@ -38,13 +39,12 @@ window.renderStatistics = function (ctx, names, times) {
     currentBarHeight = step * times[i];
     currentBarOffsetX = initialX + (histogramWidth + indent) * i;
 
+    ctx.fillStyle = 'hsl(240, ' + (Math.random() * 100) + '%, 50%)';
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else {
-      ctx.fillStyle = 'hsl(240, ' + (Math.random() * 100) + '%, 50%)';
     }
-
     ctx.fillRect(currentBarOffsetX, initialY + barHeight, histogramWidth, -currentBarHeight);
+
     ctx.fillStyle = '#000';
     ctx.textBaseline = 'bottom';
     ctx.fillText(Math.round(times[i]), currentBarOffsetX, initialY + barHeight - textIndent - currentBarHeight);
