@@ -1,8 +1,6 @@
 'use strict';
 
 window.renderStatistics = function (ctx, names, times) {
-  var offsetShadow = 10;
-
   ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
   ctx.shadowOffsetX = 10;
   ctx.shadowOffsetY = 10;
@@ -17,9 +15,12 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Список результатов:', 120, 50);
 
   var max = -1;
+  var i = null;
+  var time  = null;
 
-  for (var i = 0; i < times.length; i++) {
-    var time = times[i];
+  for (i = 0; i < times.length; i++) {
+    time = times[i];
+
     if (time > max) {
       max = time;
     }
@@ -29,20 +30,22 @@ window.renderStatistics = function (ctx, names, times) {
   var histogramWidth = 40;
   var step = barHeight / max;
   var indent = 50;
-  var currentBarHeight = null;
-  var currentBarOffsetX = null;
   var textIndent = 5;
   var initialX = 130;
   var initialY = 100;
+  var currentBarHeight = null;
+  var currentBarOffsetX = null;
 
-  for (var i = 0; i < times.length; i++) {
+  for (i = 0; i < times.length; i++) {
     currentBarHeight = step * times[i];
     currentBarOffsetX = initialX + (histogramWidth + indent) * i;
 
     ctx.fillStyle = 'hsl(240, ' + (Math.random() * 100) + '%, 50%)';
+
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     }
+
     ctx.fillRect(currentBarOffsetX, initialY + barHeight, histogramWidth, -currentBarHeight);
 
     ctx.fillStyle = '#000';
