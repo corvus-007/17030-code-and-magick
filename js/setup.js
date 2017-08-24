@@ -112,15 +112,19 @@
     setupDialog.addEventListener('click', function (event) {
       var element = event.target;
 
-      if (element.classList.contains('wizard-coat')) {
-        inputCoatColor.value = getRandomItem(WIZARD_MOCK_DATA.coatColors);
-        element.style.fill = inputCoatColor.value;
-      } else if (element.classList.contains('wizard-eyes')) {
-        inputEyesColor.value = getRandomItem(WIZARD_MOCK_DATA.eyesColors);
-        element.style.fill = inputEyesColor.value;
-      } else if (element.classList.contains('setup-fireball')) {
-        inputFireballColor.value = getRandomItem(WIZARD_MOCK_DATA.fireballColors);
-        element.parentElement.style.backgroundColor = inputFireballColor.value;
+      switch (element.getAttribute('class')) {
+        case 'wizard-coat':
+          inputCoatColor.value = getRandomItem(WIZARD_MOCK_DATA.coatColors);
+          element.style.fill = inputCoatColor.value;
+          break;
+        case 'wizard-eyes':
+          inputEyesColor.value = getRandomItem(WIZARD_MOCK_DATA.eyesColors);
+          element.style.fill = inputEyesColor.value;
+          break;
+        case 'setup-fireball':
+          inputFireballColor.value = getRandomItem(WIZARD_MOCK_DATA.fireballColors);
+          element.parentElement.style.backgroundColor = inputFireballColor.value;
+          break;
       }
     });
 
